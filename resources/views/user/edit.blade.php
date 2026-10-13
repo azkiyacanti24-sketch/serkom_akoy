@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="Edit User Profil Sekolah">
+    <meta name="author" content="Profil Sekolah">
+
+    <title>Edit User - Profil Sekolah</title>
+
+    <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+    <style>
+        .sb-topnav {
+            background-color: #198754 !important;
+        }
+
+        #layoutSidenav_nav .sb-sidenav,
+        #layoutSidenav_nav .sb-sidenav .sb-sidenav-menu,
+        #layoutSidenav_nav .sb-sidenav .sb-sidenav-footer {
+            background-color: #198754 !important;
+        }
+
+        #layoutSidenav_nav .sb-sidenav .sb-sidenav-menu-heading {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+
+        #layoutSidenav_nav .sb-sidenav .nav-link {
+            color: #ffffff !important;
+        }
+
+        #layoutSidenav_nav .sb-sidenav .nav-link .sb-nav-link-icon {
+            color: #ffffff !important;
+        }
+
+        #layoutSidenav_nav .sb-sidenav .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.12) !important;
+            color: #ffffff !important;
+        }
+
+        #layoutSidenav_nav .sb-sidenav .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.18) !important;
+            color: #ffffff !important;
+        }
+
+        #layoutSidenav_nav .sb-sidenav-footer {
+            color: #ffffff !important;
+        }
+
+        .btn-sidebar {
+            background-color: #198754 !important;
+            border-color: #198754 !important;
+            color: #ffffff !important;
+        }
+
+        .btn-sidebar:hover {
+            background-color: #157347 !important;
+            border-color: #157347 !important;
+            color: #ffffff !important;
+        }
+
+        /* FOOTER */
+        .dashboard-footer {
+            background-color: #198754 !important;
+            color: #ffffff;
+            padding: 50px 0 0;
+        }
+
+        .dashboard-footer h4,
+        .dashboard-footer h5 {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .dashboard-footer p {
+            color: #ffffff;
+            line-height: 1.7;
+        }
+
+        .dashboard-footer small {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .dashboard-footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .dashboard-footer a:hover {
+            color: #d1e7dd;
+        }
+
+        .dashboard-footer .footer-logo {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 5px;
+        }
+
+        .dashboard-footer .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .dashboard-footer .social-link:hover {
+            background-color: #ffffff;
+            color: #198754;
+            border-color: #ffffff;
+        }
+
+        .dashboard-footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            margin-top: 40px;
+            padding: 18px 0;
+            color: rgba(255, 255, 255, 0.85);
+        }
+    </style>
+</head>
+
+<body class="sb-nav-fixed">
+
+<!-- NAVBAR -->
+<nav class="sb-topnav navbar navbar-expand navbar-dark">
+    <a class="navbar-brand ps-3" href="{{ route('dashboard') }}">
+        MI Nurul Anwar
+    </a>
+
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" type="button">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <ul class="navbar-nav ms-auto me-3 me-lg-4">
+        <li class="nav-item dropdown">
+            <a
+                class="nav-link dropdown-toggle"
+                id="navbarDropdown"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fas fa-user fa-fw"></i>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+
+                        <button type="submit" class="dropdown-item">
+                            Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<!-- LAYOUT -->
+<div id="layoutSidenav">
+
+    <!-- SIDEBAR -->
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion" id="sidenavAccordion">
+
+            <div class="sb-sidenav-menu">
+
+                <div class="nav">
+
+                    <!-- CORE -->
+                    <div class="sb-sidenav-menu-heading">
+                        CORE
+                    </div>
+
+                    <a class="nav-link" href="{{ route('dashboard') }}">
+
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+
+                        Dashboard
+
+                    </a>
+
+                    <!-- DATA SEKOLAH -->
+                    <div class="sb-sidenav-menu-heading">
+                        DATA SEKOLAH
+                    </div>
+
+                    <a class="nav-link" href="{{ url('/profil-sekolah') }}">
+
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+
+                        Profil Sekolah
+
+                    </a>
+
+                    <a class="nav-link" href="{{ url('/siswa') }}">
+
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+
+                        Data Siswa
+
+                    </a>
+
+                    <a class="nav-link" href="{{ url('/guru') }}">
+
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+
+                        Data Guru
+
+                    </a>
+
+                    <a class="nav-link" href="{{ url('/berita') }}">
+
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+
+                        Berita
+
+                    </a>
+
+                    <a class="nav-link" href="{{ url('/galeri') }}">
+
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-images"></i>
+                        </div>
+
+                        Galeri
+
+                    </a>
+
+                    <a class="nav-link" href="{{ url('/ekstrakulikuler') }}">
+
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+
+                        Ekstrakurikuler
+
+                    </a>
+
+                    <!-- PENGATURAN -->
+                    <div class="sb-sidenav-menu-heading">
+                        PENGATURAN
+                    </div>
+
+                    <a class="nav-link active" href="{{ route('user.index') }}">
+
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
+
+                        Management User
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- SIDEBAR FOOTER -->
+            <div class="sb-sidenav-footer">
+
+                <div class="small">
+                    Login sebagai:
+                </div>
+
+                {{ auth()->user()->role ?? 'Admin' }}
+
+            </div>
+
+        </nav>
+    </div>
+
+    <!-- CONTENT -->
+    <div id="layoutSidenav_content">
+
+        <main>
+
+            <div class="container-fluid px-4">
+
+                <!-- JUDUL -->
+                <h1 class="mt-4">
+                    Edit User
+                </h1>
+
+                <!-- BREADCRUMB -->
+                <ol class="breadcrumb mb-4">
+
+                    <li class="breadcrumb-item">
+
+                        <a href="{{ route('dashboard') }}">
+                            Dashboard
+                        </a>
+
+                    </li>
+
+                    <li class="breadcrumb-item">
+
+                        <a href="{{ route('user.index') }}">
+                            Management User
+                        </a>
+
+                    </li>
+
+                    <li class="breadcrumb-item active">
+                        Edit User
+                    </li>
+
+                </ol>
+
+                <!-- PESAN ERROR -->
+                @if ($errors->any())
+
+                    <div class="alert alert-danger">
+
+                        <ul class="mb-0">
+
+                            @foreach ($errors->all() as $error)
+
+                                <li>
+                                    {{ $error }}
+                                </li>
+
+                            @endforeach
+
+                        </ul>
+
+                    </div>
+
+                @endif
+
+                <!-- CARD -->
+                <div class="card mb-4">
+
+                    <div class="card-header">
+
+                        <i class="fas fa-user-edit me-1"></i>
+
+                        Edit Data User
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <form
+                            action="{{ route('user.update') }}"
+                            method="POST">
+
+                            @csrf
+
+                            <input
+                                type="hidden"
+                                name="id_user"
+                                value="{{ $user->getKey() }}">
+
+                            <!-- NAMA -->
+                            <div class="mb-3">
+
+                                <label
+                                    for="name"
+                                    class="form-label">
+
+                                    Nama
+
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="name"
+                                    name="name"
+                                    value="{{ old('name', $user->name) }}"
+                                    required>
+
+                            </div>
+
+                            <!-- USERNAME -->
+                            <div class="mb-3">
+
+                                <label
+                                    for="username"
+                                    class="form-label">
+
+                                    Username
+
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="username"
+                                    name="username"
+                                    value="{{ old('username', $user->username) }}"
+                                    required>
+
+                            </div>
+
+                            <!-- PASSWORD -->
+                            <div class="mb-3">
+
+                                <label
+                                    for="password"
+                                    class="form-label">
+
+                                    Password
+
+                                </label>
+
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="password"
+                                    name="password"
+                                    placeholder="Kosongkan jika tidak ingin mengubah password">
+
+                                <small class="text-muted">
+                                    Kosongkan jika password tidak ingin diubah.
+                                </small>
+
+                            </div>
+
+                            <!-- ROLE -->
+                            <div class="mb-3">
+
+                                <label
+                                    for="role"
+                                    class="form-label">
+
+                                    Role
+
+                                </label>
+
+                                <select
+                                    class="form-select"
+                                    id="role"
+                                    name="role"
+                                    required>
+
+                                    <option
+                                        value="Admin"
+                                        {{ old('role', $user->role) == 'Admin' ? 'selected' : '' }}>
+
+                                        Admin
+
+                                    </option>
+
+                                    <option
+                                        value="Operator"
+                                        {{ old('role', $user->role) == 'Operator' ? 'selected' : '' }}>
+
+                                        Operator
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <!-- TOMBOL -->
+                            <div class="mt-4">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-sidebar">
+
+                                    <i class="fas fa-save me-1"></i>
+
+                                    Simpan Perubahan
+
+                                </button>
+
+                                <a
+                                    href="{{ route('user.index') }}"
+                                    class="btn btn-secondary">
+
+                                    <i class="fas fa-arrow-left me-1"></i>
+
+                                    Batal
+
+                                </a>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+       <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">
+                        Copyright &copy; MI Nurul Anwar 2026
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<!-- BOOTSTRAP -->
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous">
+</script>
+<script src="{{ asset('assets/js/scripts.js') }}"></script>
+
+</body>
+</html>
