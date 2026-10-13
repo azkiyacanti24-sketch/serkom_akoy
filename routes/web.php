@@ -48,16 +48,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // ============= DATA SISWA =============
+    
     Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
-    Route::post('/siswa/detail', [SiswaController::class, 'show'])->name('siswa.detail');
 
     Route::middleware('admin')->group(function () {
         Route::get('/siswa/create', [SiswaController::class, 'create'])->name('siswa.create');
         Route::post('/siswa/store', [SiswaController::class, 'store'])->name('siswa.store');
         Route::post('/siswa/edit', [SiswaController::class, 'edit'])->name('siswa.edit');
-        Route::post('/siswa/update', [SiswaController::class, 'update'])->name('siswa.update');
+        Route::match(['post', 'put'], '/siswa/update', [SiswaController::class, 'update'])->name('siswa.update');
         Route::post('/siswa/delete', [SiswaController::class, 'destroy'])->name('siswa.delete');
     });
+
 
     // ============= PROFIL SEKOLAH =============
     Route::get('/profil-sekolah', [ProfilSekolahController::class, 'index'])->name('profil-sekolah.index');

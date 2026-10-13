@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\galeri;
-use App\Models\profil_sekolah;
+use App\Models\ProfilSekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -33,7 +33,7 @@ class GaleriController extends Controller
     public function landingDetail(Request $request)
     {
         $galeri = galeri::findOrFail($request->galeri_id);
-        $profil = profil_sekolah::first();
+        $profil = ProfilSekolah::first();
 
         return view('galeri.landing-detail', compact('galeri', 'profil'));
     }
@@ -83,51 +83,57 @@ class GaleriController extends Controller
             ->with('success', 'Data galeri berhasil ditambahkan!');
     }
 
-    // EDIT pakai parameter $id (dari URL)
     public function edit(Request $request)
-{
-    $galeri = Galeri::findOrFail($request->galeri_id);
-    return view('galeri.edit', compact('galeri'));
-}
+    {
+        $galeri = galeri::findOrFail($request->galeri_id);
 
+        return view('galeri.edit', compact('galeri'));
+    }
+
+    
 public function update(Request $request)
 {
-    $galeri = Galeri::findOrFail($request->galeri_id);
+    $galeri = galeri::findOrFail($request->galeri_id);
 
     $request->validate([
-        'judul'     => 'required',
+        'judul' => 'required',
         'deskripsi' => 'nullable',
-        'gambar'    => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-        'video'     => 'nullable',
+        'keterangan' => 'nullable',
+        'gambar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        'video' => 'nullable',
     ]);
 
     $galeri->judul = $request->judul;
-    $galeri->deskripsi = $request->deskripsi;
-    $galeri->video = $request->video;
+    $galeri->deskripsi = $request->input('deskripsi', $request->input('keterangan', ''));
+    $galeri->video = $request->video ?? $galeri->video;
 
     if ($request->hasFile('gambar')) {
         if ($galeri->gambar) {
             Storage::disk('public')->delete($galeri->gambar);
         }
+
         $path = $request->file('gambar')->store('galeri', 'public');
         $galeri->gambar = $path;
     }
 
     $galeri->save();
 
-    return redirect('/dashboard/galeri')->with('success', 'Galeri berhasil diperbarui.');
+    return redirect('/dashboard/galeri')
+        ->with('success', 'Galeri berhasil diperbarui.');
 }
 
-public function destroy(Request $request)
-{
-    $galeri = Galeri::findOrFail($request->galeri_id);
 
-    if ($galeri->gambar) {
-        Storage::disk('public')->delete($galeri->gambar);
+    public function destroy(Request $request)
+    {
+        $galeri = galeri::findOrFail($request->galeri_id);
+
+        if ($galeri->gambar) {
+            Storage::disk('public')->delete($galeri->gambar);
+        }
+
+        $galeri->delete();
+
+        return redirect('/dashboard/galeri')
+            ->with('success', 'Galeri berhasil dihapus.');
     }
-
-    $galeri->delete();
-
-    return redirect('/dashboard/galeri')->with('success', 'Galeri berhasil dihapus.');
-}
 }

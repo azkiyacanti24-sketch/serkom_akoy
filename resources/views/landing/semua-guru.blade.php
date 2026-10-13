@@ -66,6 +66,7 @@
                 <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Beranda</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('/') }}#profil">Profil</a></li>
                 <li class="nav-item"><a class="nav-link active" href="{{ route('landing.semua-guru') }}">Guru</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url('/') }}#siswa">Siswa</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('landing.berita') }}">Berita</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('/') }}#galeri">Galeri</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('/') }}#ekstrakulikuler">Ekstrakulikuler</a></li>
@@ -129,7 +130,7 @@
                             @endif
 
                             <div class="mt-auto pt-3">
-                                <a href="{{ route('guru.landing-detail', $guru->nama_guru) }}" class="btn btn-success btn-sm">
+                                <a href="{{ route('guru.landing-detail', str_replace(' ', '-', strtolower(trim($guru->nama_guru)))) }}" class="btn btn-success btn-sm">
                                     <i class="fas fa-eye me-1"></i> Lihat Detail
                                 </a>
                             </div>

@@ -6,8 +6,29 @@
     <title>Login - MI Nurul Anwar</title>
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <style>
+        .btn-kembali {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #ffffff;
+            font-size: 28px;
+            text-decoration: none;
+            z-index: 10;
+        }
+
+        .btn-kembali:hover {
+            color: #e9ecef;
+        }
+    </style>
 </head>
 <body class="bg-success">
+
+    <!-- Tombol Kembali ke Landing Page -->
+    <a href="{{ route('landing.home') }}" class="btn-kembali" title="Kembali ke Landing Page">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
@@ -27,16 +48,19 @@
                                     <h4 class="text-center mb-4">
                                         Login Admin
                                     </h4>
+
                                     @if(session('success'))
                                         <div class="alert alert-success">
                                             {{ session('success') }}
                                         </div>
                                     @endif
+
                                     @if(session('error'))
                                         <div class="alert alert-danger">
                                             {{ session('error') }}
                                         </div>
                                     @endif
+
                                     @if($errors->any())
                                         <div class="alert alert-danger">
                                             @foreach($errors->all() as $error)
@@ -44,6 +68,7 @@
                                             @endforeach
                                         </div>
                                     @endif
+
                                     <form action="{{ route('login.process') }}" method="POST">
                                         @csrf
                                         <div class="form-floating mb-3">
@@ -87,6 +112,7 @@
             </footer>
         </div>
     </div>
+
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
 </body>
 </html>

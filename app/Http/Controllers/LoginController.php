@@ -25,8 +25,13 @@ class LoginController extends Controller
         ])) {
             $request->session()->regenerate();
 
+            if (Auth::user()->role == 'Admin') {
+                return redirect('/dashboard')
+                    ->with('success', 'Berhasil login sebagai Admin!');
+            }
+
             return redirect('/dashboard')
-                ->with('success', Auth::user()->role . ' berhasil login');
+                ->with('success', 'Berhasil login sebagai Operator!');
         }
 
         return back()
@@ -41,6 +46,7 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login')
+            ->with('success', 'Anda berhasil logout!');
     }
 }

@@ -184,9 +184,9 @@
                             @endif
 
                             {{-- FORM EDIT --}}
-                            <form action="{{ route('siswa.update', $siswa->id) }}" method="POST">
+                            <form action="{{ route('siswa.update') }}" method="POST">
                                 @csrf
-                                @method('PUT')
+                                <input type="hidden" name="siswa_id" value="{{ $siswa->id }}">
 
                                 <div class="mb-3">
                                     <label for="nis" class="form-label">NIS</label>

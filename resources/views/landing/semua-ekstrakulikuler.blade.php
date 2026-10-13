@@ -43,7 +43,7 @@
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             @if($profil && $profil->logo)
-                <img src="{{ asset('storage/profil/' . $profil->logo) }}" alt="Logo Sekolah">
+                <img src="{{ asset('storage/' . $profil->logo) }}" alt="Logo Sekolah">
             @endif
             <span>
                 {{ $profil->nama_sekolah ?? 'MI Nurul Anwar' }}
@@ -60,6 +60,7 @@
                 <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Beranda</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('/') }}#profil">Profil</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('/') }}#guru">Guru</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url('/') }}#siswa">Siswa</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('landing.berita') }}">Berita</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('/') }}#galeri">Galeri</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('landing.ekstrakulikuler') }}">Ekstrakulikuler</a></li>
@@ -131,7 +132,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="d-flex align-items-center mb-3">
                     @if($profil && $profil->logo)
-                        <img src="{{ asset('storage/profil/' . $profil->logo) }}" alt="Logo" class="footer-logo">
+                        <img src="{{ asset('storage/' . $profil->logo) }}" alt="Logo Sekolah" style="width:55px;height:55px;object-fit:contain;margin-right:12px;">
                     @endif
                     <div class="ms-3">
                         <h4 class="mb-1">{{ $profil->nama_sekolah ?? 'MI Nurul Anwar' }}</h4>

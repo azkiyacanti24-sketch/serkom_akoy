@@ -155,7 +155,7 @@
     <div class="container">
         <a href="{{ url('/') }}" class="navbar-brand">
             @if($profil && $profil->logo)
-                <img src="{{ asset('storage/profil/' . $profil->logo) }}" alt="Logo Sekolah">
+                <img src="{{ asset('storage/' . $profil->logo) }}" alt="Logo Sekolah">
             @endif
             <div class="navbar-brand-text">
                 <div class="school-name">
@@ -272,13 +272,8 @@
                 <div class="d-flex align-items-center mb-3">
 
                     @if($profil && $profil->logo)
-
-                        <img src="{{ asset('storage/profil/' . $profil->logo) }}"
-                             alt="Logo Sekolah"
-                             class="footer-logo">
-
+                        <img src="{{ asset('storage/' . $profil->logo) }}" alt="Logo Sekolah" style="width:55px;height:55px;object-fit:contain;margin-right:12px;">
                     @endif
-
                     <div class="ms-3">
 
                         <h4 class="mb-1">

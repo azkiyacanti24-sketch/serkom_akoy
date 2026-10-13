@@ -330,8 +330,8 @@
                                 @csrf
 
                                 <input type="hidden"
-                                       name="id"
-                                       value="{{ $data->id }}">
+                                    name="ekstrakulikuler_id"
+                                    value="{{ $data->id }}">
 
                                 <!-- NAMA EKSTRAKULIKULER -->
                                 <div class="mb-3">

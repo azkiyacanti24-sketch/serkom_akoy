@@ -38,41 +38,44 @@ class UserController extends Controller
 
         return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan.');
     }
+    
+public function edit(Request $request)
+{
+    $request->validate([
+        'id_user' => 'required|exists:users,id_user',
+    ]);
 
-    public function edit(Request $request)
-    {
-        $request->validate([
-            'user_id' => 'required|exists:users,id_user',
-        ]);
+    $user = User::findOrFail($request->id_user);
 
-        $user = User::findOrFail($request->user_id);
-        return view('user.edit', compact('user'));
+    return view('user.edit', compact('user'));
+}
+
+public function update(Request $request)
+{
+    $request->validate([
+        'id_user'  => 'required|exists:users,id_user',
+        'name'     => 'required',
+        'username' => 'required|unique:users,username,' . $request->id_user . ',id_user',
+        'role'     => 'required|in:Admin,Operator',
+        'password' => 'nullable|min:6',
+    ]);
+
+    $user = User::findOrFail($request->id_user);
+
+    $user->name = $request->name;
+    $user->username = $request->username;
+    $user->role = $request->role;
+
+    if ($request->filled('password')) {
+        $user->password = Hash::make($request->password);
     }
 
-    public function update(Request $request)
-    {
-        $request->validate([
-            'user_id'  => 'required|exists:users,id_user',
-            'name'     => 'required',
-            'username' => 'required',
-            'role'     => 'required|in:Admin,Operator',
-            'password' => 'nullable|min:6',
-        ]);
+    $user->save();
 
-        $user = User::findOrFail($request->user_id);
-
-        $user->name = $request->name;
-        $user->username = $request->username;
-        $user->role = $request->role;
-
-        if ($request->filled('password')) {
-            $user->password = Hash::make($request->password);
-        }
-
-        $user->save();
-
-        return redirect()->route('user.index')->with('success', 'User berhasil diperbarui.');
-    }
+    return redirect()
+        ->route('user.index')
+        ->with('success', 'User berhasil diperbarui.');
+}
 
     public function destroy(Request $request)
     {

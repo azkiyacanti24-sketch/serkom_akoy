@@ -116,6 +116,7 @@ public function destroy(Request $request)
     return redirect('/dashboard/guru')->with('success', 'Data guru berhasil dihapus.');
 }
 
+    
     public function landingDetail($nama)
     {
         $nama_asli = str_replace('-', ' ', $nama);
@@ -124,4 +125,5 @@ public function destroy(Request $request)
 
         return view('landing.detail-guru', compact('guru', 'profil'));
     }
+
 }

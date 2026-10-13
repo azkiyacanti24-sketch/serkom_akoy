@@ -219,14 +219,15 @@
 
                                             @if(auth()->check() && auth()->user()->role === 'Admin')
                                             <td>
-                                                {{-- TOMBOL EDIT --}}
-                                                <form action="{{ route('siswa.edit') }}" method="POST" style="display:inline;">
-                                                    @csrf
-                                                    <input type="hidden" name="siswa_id" value="{{ $item->id }}">
-                                                    <button type="submit" class="btn btn-warning btn-sm">
-                                                        <i class="fas fa-edit"></i> Edit
-                                                    </button>
-                                                </form>
+                                                
+                                            {{-- TOMBOL EDIT --}}
+                                            <form action="{{ route('siswa.edit') }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                <input type="hidden" name="siswa_id" value="{{ $item->id }}">
+                                                <button type="submit" class="btn btn-warning btn-sm">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </button>
+                                            </form>
 
                                                 {{-- TOMBOL HAPUS --}}
                                                 <form action="{{ route('siswa.delete') }}" method="POST" style="display:inline;"

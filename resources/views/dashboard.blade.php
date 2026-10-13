@@ -85,6 +85,16 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
+
+                {{-- PEMBERITAHUAN LOGIN --}}
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                        <i class="fas fa-check-circle me-2"></i>
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 <h1 class="mt-4">Dashboard</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item active">Dashboard</li>

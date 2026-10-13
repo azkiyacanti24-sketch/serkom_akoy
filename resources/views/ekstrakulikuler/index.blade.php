@@ -57,7 +57,6 @@
 
 <body class="sb-nav-fixed">
 
-    <!-- NAVBAR -->
     <nav class="sb-topnav navbar navbar-expand navbar-dark">
         <a class="navbar-brand ps-3" href="{{ route('dashboard') }}">MI Nurul Anwar</a>
 
@@ -82,10 +81,8 @@
         </ul>
     </nav>
 
-    <!-- LAYOUT -->
     <div id="layoutSidenav">
 
-        <!-- SIDEBAR -->
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
@@ -141,7 +138,6 @@
             </nav>
         </div>
 
-        <!-- CONTENT -->
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
@@ -186,7 +182,6 @@
 
                         <div class="card-body">
 
-                            <!-- PENCARIAN -->
                             <div class="dataTable-top">
                                 <div class="dataTable-dropdown">
                                     <select id="jumlahPerHalaman">
@@ -204,7 +199,6 @@
                                 </div>
                             </div>
 
-                            <!-- DAFTAR -->
                             @if($ekstrakulikuler->count() > 0)
 
                                 <div class="row" id="daftarEkstrakulikuler">
@@ -234,7 +228,6 @@
                                                 <div class="card-footer bg-white border-0 pb-3">
                                                     @if(Auth::user()->role === 'Admin')
 
-                                                        {{-- EDIT --}}
                                                         <form action="{{ route('ekstrakulikuler.edit') }}" method="POST" style="display:inline;">
                                                             @csrf
                                                             <input type="hidden" name="ekstrakulikuler_id" value="{{ $item->id }}">
@@ -243,7 +236,6 @@
                                                             </button>
                                                         </form>
 
-                                                        {{-- HAPUS --}}
                                                         <form action="{{ route('ekstrakulikuler.delete') }}" method="POST" style="display:inline;"
                                                               onsubmit="return confirm('Yakin ingin menghapus ekstrakulikuler ini?');">
                                                             @csrf
@@ -258,7 +250,7 @@
                                                         {{-- DETAIL --}}
                                                         <form action="{{ route('ekstrakulikuler.detail') }}" method="POST" style="display:inline;">
                                                             @csrf
-                                                            <input type="hidden" name="ekstrakulikuler_id" value="{{ $item->id }}">
+                                                            <input type="hidden" name="id" value="{{ $item->id }}">
                                                             <button type="submit" class="btn btn-success btn-sm">
                                                                 <i class="fas fa-eye me-1"></i> Detail
                                                             </button>
@@ -272,13 +264,11 @@
                                     @endforeach
                                 </div>
 
-                                <!-- PENCARIAN KOSONG -->
                                 <div id="tidakDitemukan" class="text-center py-5" style="display:none;">
                                     <i class="fas fa-search fa-4x text-secondary mb-3"></i>
                                     <h4>Ekstrakulikuler tidak ditemukan</h4>
                                 </div>
 
-                                <!-- INFO & PAGINATION -->
                                 <div class="dataTable-bottom">
                                     <div class="dataTable-info" id="infoEkstrakulikuler"></div>
                                     <div class="dataTable-pagination" id="paginationEkstrakulikuler"></div>
